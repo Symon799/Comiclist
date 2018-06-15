@@ -12,19 +12,19 @@ class IssueElt extends React.Component {
    render() {
        //console.log(this.props);
         return (
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-2">
                         <a href="#">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src={this.props.image} alt="" width="104" height="160" />
+                            <img className="img-fluid rounded mb-3 mb-md-0" src={this.props.image} alt="" width="104" height="160" />
                         </a>
                     </div>
-                    <div class="col-md-8">
+                    <div className="col-md-8">
                         <h4>{this.props.volume} #{this.props.issueNb} - {this.props.name}</h4>
-                        <h6><span class="badge badge-secondary">{this.props.date}</span></h6>
+                        <h6><span className="badge badge-secondary">{this.props.date}</span></h6>
                     </div>
-                    <div class="col-md-1">
-                        <a class="btn btn-primary" href={this.props.site}> + Add to my list</a>
+                    <div className="col-md-1">
+                        <a className="btn btn-primary" href={this.props.site}> + Add to my list</a>
                     </div>
                 </div>
             </div>
