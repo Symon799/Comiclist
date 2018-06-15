@@ -9,18 +9,9 @@ class Layout extends React.Component {
         super(props)
     }
 
-    /*
-    render() {
-         return (
-             <div class="row">
-                 <h1>HOME</h1>
-             </div>
-         )
-     }
-     */
    render() {
         return (
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" font-size="26px">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="/">
                     <img src="http://wfarm3.dataknet.com/static/resources/icons/set99/354bd043.png" alt="logo" width="35px" height="35px"/>
                 </a>
@@ -43,14 +34,14 @@ class Layout extends React.Component {
                             <a class="nav-link" href="/users">Users</a>
                         </li>
                     </ul>
-                    <form class="navbar-form" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search issues" name="q"/>
-                    <div class="input-group-btn">
-                        <button class="btn btn-secondary" type="submit"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/768px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" width="30px" height="30px"/></button>
-                    </div>
-                </div>
-            </form>
+                    <form class="navbar-form" action='/search' method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search issues" name="tagg"/>
+                            <div class="input-group-btn">
+                                <button class="btn btn-secondary" type="submit"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/768px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" width="30px" height="30px"/></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </nav>
         )
