@@ -1,9 +1,12 @@
 // App.js
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import IssueList from './IssueList'
-import Button from './Button'
-import Form from './Form';
+import Search from './Search'
+import Home from './Home'
+import Layout from './Layout'
+
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 
 class App extends React.Component {
     constructor(props) {
@@ -12,9 +15,16 @@ class App extends React.Component {
 
     render() {
         return (
-            <div class="container">
-                <h1 class="my-4">Issues</h1>
-                <IssueList/>
+            <div>
+                <Layout/>
+                <div class="container">
+                    <Router>
+                        <Switch>
+                            <Route exact path="/" component={Home}/>
+                            <Route exact path="/search" component={Search}/>
+                        </Switch>
+                    </Router>
+                </div>
             </div>
         )
     }

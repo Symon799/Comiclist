@@ -1,7 +1,7 @@
 // IssueList.js
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import Photo from './Photo'
+import IssueElt from './IssueElt'
 import { connect } from 'react-redux';
 import { fetchPage } from '../actions/actions'
 
@@ -44,7 +44,7 @@ class IssueList extends React.Component {
                     console.log(item);
                     return (
                         <div>
-                            <Photo key={i} name={item.name} issueNb={item.issue_number} site ={item.site_detail_url} date ={item.cover_date} volume = {item.volume.name} image ={item.image.thumb_url}/>
+                            <IssueElt key={i} name={item.name} issueNb={item.issue_number} site ={item.site_detail_url} date ={item.cover_date} volume = {item.volume.name} image ={item.image.thumb_url}/>
                             <hr/>
                         </div>
                     )
@@ -58,7 +58,6 @@ class IssueList extends React.Component {
 function mapStateToProps(state) {
     return {
         search_tag: state.search_tag
-        //grid: state.display.grid
     }
 }
 

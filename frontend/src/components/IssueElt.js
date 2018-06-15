@@ -1,30 +1,14 @@
-// Photo.js
+// IssueElt.js
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { remove } from '../actions/actions';
 
-class Photo extends React.Component {
+class IssueElt extends React.Component {
     constructor(props) {
         super(props)
-        this.onClick = this.onClick.bind(this)
     }
 
-    onClick() {
-        console.log('click delete')
-        this.props.dispatch(remove(this.props.id))
-    }
-    /*
-    render() {
-        return (
-            <div>
-                <img src={this.props.url}/>
-                <button onClick={this.onClick}>Delete</button>
-                <label>{this.props.index}</label>
-            </div>
-        )
-    }
-    */
    render() {
        console.log(this.props);
         return (
@@ -48,4 +32,4 @@ class Photo extends React.Component {
     }
 }
 
-export default hot(module)(connect()(Photo))
+export default hot(module)(connect()(IssueElt))
