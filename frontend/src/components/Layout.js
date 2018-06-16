@@ -11,7 +11,9 @@ class Layout extends React.Component {
     }
 
     componentWillMount() {
-        this.state =  { userId: cookie.load('userId') }
+        this.setState({
+            userId: cookie.load('userId')
+        }) 
     }
 
     logOut() {

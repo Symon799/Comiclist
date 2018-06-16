@@ -56,9 +56,6 @@ myRouter.route('/users')
       user.email = obj.email;
       user.password = obj.password;
       user.comics = obj.comics
-
-      console.log(user);
-      console.log(obj)
       
       user.save(function(err){
         if(err){
