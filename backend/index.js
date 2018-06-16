@@ -143,4 +143,15 @@ app.get('/issue/:issue_id', function(req, res) {
     
 });
 
+app.get('/lastissues', function(req, res) {
+    var urljson = 'http://comicvine.com/api/issues/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&sort=store_date:desc&format=json';
+    fetch(urljson, {timeout: 5000})
+        .then((response) => response.json())
+        .then(obj => {
+            res.send(obj);
+        })
+    
+});
+
+
 app.listen(port, () => console.log('App listening on port ' + port))

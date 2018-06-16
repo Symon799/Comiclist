@@ -38,7 +38,7 @@ class Issue extends React.Component {
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item active">
                                     <a className="nav-link" href="/">
-                                        <h4>{item.name}</h4>
+                                        <h4>{item.volume.name} #{item.issue_number} - {item.name}</h4>
                                     </a>
                                 </li>
                             </ul>
@@ -76,6 +76,7 @@ class Issue extends React.Component {
         {
             return (
                 <div className="container">
+                    <br/>
                     <center>Loading...</center>
                 </div>
             )

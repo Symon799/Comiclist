@@ -9,16 +9,15 @@ class Search extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            issueList: []
+            issueList: [],
+            searchtag: new URLSearchParams(location.search).get('tag')
         }
     }
 
     componentDidMount() {
         //this.props.dispatch(fetchPage(0, 20))
         const query = new URLSearchParams(location.search);
-        const searchtag = query.get('tag');
-        
-        var urljson = 'http://localhost:4242/issues/' + searchtag;
+        var urljson = 'http://localhost:4242/issues/' + this.state.searchtag;
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
             .then(obj => {
@@ -27,7 +26,7 @@ class Search extends React.Component {
     }
 
    render() {
-       if (this.state.issueList.results)
+       if (this.state.searchtag)
        {
             return (
                 <div className="container">
