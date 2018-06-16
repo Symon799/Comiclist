@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
-const images = require('./images.json')
 const fetch = require('node-fetch');
 
 app.use(bodyParser.json())
