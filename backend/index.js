@@ -118,4 +118,15 @@ app.get('/issues/:search_tag', function(req, res) {
     
 });
 
+app.get('/issue/:issue_id', function(req, res) {
+    var urljson = 'https://comicvine.gamespot.com/api/issue/4000-' + req.params.issue_id + '/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&format=json';
+    fetch(urljson, {timeout: 5000})
+        .then((response) => response.json())
+        .then(obj => {
+            //console.log(obj.results[0].image.icon_url)
+            res.send(obj);
+        })
+    
+});
+
 app.listen(port, () => console.log('App listening on port ' + port))
