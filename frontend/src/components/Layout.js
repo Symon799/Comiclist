@@ -2,14 +2,45 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
-import { remove } from '../actions/actions';
+import cookie from 'react-cookies'
 
 class Layout extends React.Component {
     constructor(props) {
         super(props)
+        this.logOut = this.logOut.bind(this)
     }
 
-   render() {
+    componentWillMount() {
+        this.state =  { userId: cookie.load('userId') }
+    }
+
+    logOut() {
+        console.log('log out')
+        cookie.remove('userId', { path: '/' })
+    }
+
+    render() {
+        const { userId } = this.state
+        let account;
+        if (userId) {
+            account = (
+                <a className="nav-link" href="/" onClick={() => this.logOut()}>Logout</a>
+            )
+        } else {
+            account = (
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/login">Login</a>
+                        <a class="dropdown-item" href="/register">Register</a>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a className="navbar-brand" href="/">
@@ -34,10 +65,7 @@ class Layout extends React.Component {
                             <a className="nav-link" href="/users">Users</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/login">Login</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/register">Register</a>
+                            { account }
                         </li>
                     </ul>
                     <form className="navbar-form" action='/search' method="get">

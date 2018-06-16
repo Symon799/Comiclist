@@ -3,6 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import cookie from 'react-cookies'
+import { Link, withRouter } from 'react-router-dom'
 
 class Login extends React.Component {
     constructor(props) {
@@ -38,7 +39,13 @@ class Login extends React.Component {
                 password: this.state.password
             })
         }).then(response => response.json())
-        .then(obj => console.log(obj))
+        .then(obj => {
+            console.log(obj)
+            if (obj && obj._id) {
+                cookie.save('userId', obj._id, { path: '/' })
+                this.props.history.push("/");
+            }
+        })
     }
 
     render() {
