@@ -1,5 +1,5 @@
 # Comic List
 
 #### Authors
-Simon rigard
+Simon Rigard
 David Lespine
