@@ -10,14 +10,14 @@ class Footer extends React.Component {
 
    render() {
         return (
-            <div>
-                <div class="footer-top text-white py-3  bg-dark fixed-bottom">
-                    <div class="container">
-                        <div class="row text-center">
-                            <div class="col-md-12">
+            <div><br/><br/>
+                <div className="footer text-white py-3 bg-dark">
+                    <div className="container">
+                        <div className="row text-center">
+                            <div className="col-md-12">
                                 <h2>ComicList  </h2>
                             </div>
-                            <div class="col-md-12">
+                            <div className="col-md-12">
                                 Keep track of your favorite comics ! @Copyright ComicList
                             </div>
                         </div>

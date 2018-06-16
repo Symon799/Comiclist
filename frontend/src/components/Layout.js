@@ -28,14 +28,14 @@ class Layout extends React.Component {
             )
         } else {
             account = (
-                <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div className="dropdown show">
+                    <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Account
                     </a>
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/login">Login</a>
-                        <a class="dropdown-item" href="/register">Register</a>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a className="dropdown-item" href="/login">Login</a>
+                        <a className="dropdown-item" href="/register">Register</a>
                     </div>
                 </div>
             )
@@ -73,7 +73,7 @@ class Layout extends React.Component {
                             </div>
                         </div>
                     </form>
-                    <li role="separator" class="divider"></li>
+                    <li role="separator" className="divider"></li>
                     <ul className="navbar-nav pull-right">
                         <li className="nav-item">
                             { account }

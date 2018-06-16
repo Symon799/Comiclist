@@ -13,26 +13,26 @@ class Home extends React.Component {
    render() {
         return (
             <div>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+                <ol className="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img class="d-block w-100" src="../../public/comics2.png" alt="First slide"/>
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                    <img className="d-block w-100" src="../../public/comics2.png" alt="First slide"/>
                     </div>
-                    <div class="carousel-item">
-                    <img class="d-block w-100" src="../../public/comics.png" alt="Second slide"/>
+                    <div className="carousel-item">
+                    <img className="d-block w-100" src="../../public/comics.png" alt="Second slide"/>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Next</span>
                 </a>
             </div>
 
@@ -41,34 +41,34 @@ class Home extends React.Component {
                 <div className="row">
                     <div className="col-md-2">
                         <a href="/issue/505116">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_medium/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                            <img className="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_medium/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>
                     </div>
                     <div className="col-md-2">
                     <a href="/issue/505116">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                            <img className="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>
                     </div><div className="col-md-2">
                     <a href="/issue/505116">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                            <img className="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>
                     </div><div className="col-md-2">
                     <a href="/issue/505116">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                            <img className="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>
                     </div><div className="col-md-2">
                     <a href="/issue/505116">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                            <img className="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>
                     </div>
                     <div className="col-md-2">
                     <a href="/issue/505116">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                            <img className="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>
                     </div>

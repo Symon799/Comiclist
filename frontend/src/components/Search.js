@@ -15,7 +15,6 @@ class Search extends React.Component {
 
     componentDidMount() {
         //this.props.dispatch(fetchPage(0, 20))
-
         const query = new URLSearchParams(location.search);
         const searchtag = query.get('tag');
         
