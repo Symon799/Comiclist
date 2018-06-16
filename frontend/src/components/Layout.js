@@ -64,11 +64,8 @@ class Layout extends React.Component {
                         <li className="nav-item">
                             <a className="nav-link" href="/users">Users</a>
                         </li>
-                        <li className="nav-item">
-                            { account }
-                        </li>
                     </ul>
-                    <form className="navbar-form" action='/search' method="get">
+                    <form className="navbar-form pull-right" action='/search' method="get">
                         <div className="input-group">
                             <input type="text" className="form-control" placeholder="Search issues" name="tag"/>
                             <div className="input-group-btn">
@@ -76,6 +73,12 @@ class Layout extends React.Component {
                             </div>
                         </div>
                     </form>
+                    <li role="separator" class="divider"></li>
+                    <ul className="navbar-nav pull-right">
+                        <li className="nav-item">
+                            { account }
+                        </li>
+                    </ul>
                 </div>
             </nav>
         )
