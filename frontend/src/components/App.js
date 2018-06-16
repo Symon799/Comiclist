@@ -7,9 +7,10 @@ import Layout from './Layout'
 import Issue from './Issue'
 import Users from './Users'
 import Footer from './Footer'
+import Register from './Register'
+import Login from './Login'
 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 class App extends React.Component {
     constructor(props) {
@@ -26,6 +27,8 @@ class App extends React.Component {
                         <Route exact path="/search" component={Search}/>
                         <Route path="/issue/:id" component={Issue}/>
                         <Route exact path="/users" component={Users}/>
+                        <Route exact path="/login" component={Login}/>
+                        <Route exact path="/register" component={Register}/>
                     </Switch>
                 </Router>
                 <Footer/>

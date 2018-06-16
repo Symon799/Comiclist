@@ -57,7 +57,6 @@ class Users extends React.Component {
             ) 
         }
     }
-    
 }
 
 export default hot(module)(connect()(Users))

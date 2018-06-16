@@ -2,7 +2,6 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
-import { remove } from '../actions/actions';
 import IssueList from './IssueList'
 
 
