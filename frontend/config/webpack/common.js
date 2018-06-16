@@ -71,6 +71,10 @@ module.exports = {
     historyApiFallback: true,
   },
 
+  output: {
+    publicPath: '/'
+  },
+
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',

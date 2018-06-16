@@ -3,6 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { remove } from '../actions/actions';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Home extends React.Component {
     constructor(props) {
@@ -16,7 +17,6 @@ class Home extends React.Component {
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -40,34 +40,34 @@ class Home extends React.Component {
                 <br/><h1>Last issues</h1><br/>
                 <div className="row">
                     <div className="col-md-2">
-                        <a href="/issue">
+                        <a href="/issue/505116">
+                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_medium/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                        </a>
+                        <center><h5>Flash</h5></center>
+                    </div>
+                    <div className="col-md-2">
+                    <a href="/issue/505116">
+                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                        </a>
+                        <center><h5>Flash</h5></center>
+                    </div><div className="col-md-2">
+                    <a href="/issue/505116">
+                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                        </a>
+                        <center><h5>Flash</h5></center>
+                    </div><div className="col-md-2">
+                    <a href="/issue/505116">
+                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
+                        </a>
+                        <center><h5>Flash</h5></center>
+                    </div><div className="col-md-2">
+                    <a href="/issue/505116">
                             <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>
                     </div>
                     <div className="col-md-2">
-                        <a href="/issue">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
-                        </a>
-                        <center><h5>Flash</h5></center>
-                    </div><div className="col-md-2">
-                        <a href="/issue">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
-                        </a>
-                        <center><h5>Flash</h5></center>
-                    </div><div className="col-md-2">
-                        <a href="/issue">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
-                        </a>
-                        <center><h5>Flash</h5></center>
-                    </div><div className="col-md-2">
-                        <a href="/issue">
-                            <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
-                        </a>
-                        <center><h5>Flash</h5></center>
-                    </div>
-                    <div className="col-md-2">
-                        <a href="/issue">
+                    <a href="/issue/505116">
                             <img class="img-fluid rounded mb-3 mb-md-0" src="https://comicvine.gamespot.com/api/image/scale_avatar/4891270-6829728483-THEFL.jpg" alt="" width="300" height="200"/>
                         </a>
                         <center><h5>Flash</h5></center>

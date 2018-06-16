@@ -2,8 +2,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
-import IssueList from './IssueList'
-
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class Issue extends React.Component {
     constructor(props) {
@@ -18,8 +17,7 @@ class Issue extends React.Component {
 
         //const query = new URLSearchParams(location.search);
         //const idIssue = query.get('tag');
-        const idIssue = 105811;
-        
+        const idIssue = this.props.match.params.id;
         var urljson = 'http://localhost:4242/issue/' + idIssue;
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
@@ -32,7 +30,6 @@ class Issue extends React.Component {
        if (this.state.issueList.results)
        {
            let item = this.state.issueList.results;
-           console.log(item);
             return (
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
@@ -49,25 +46,25 @@ class Issue extends React.Component {
                     </nav>
                     <br/>
                     <div className="container">
-                        <div class="panel-body">
+                        <div className="panel-body">
                             <div className="row">
                                 <div className="col-md-5">
-                                    <div class="jumbotron">
+                                    <div className="jumbotron">
                                         <a href="#">
                                             <img className="img-fluid rounded mb-3 mb-md-0" src={item.image.medium_url}/>
                                         </a>
                                         <br/><br/><br/>
-                                        <h5>Volume name : {item.volume.name}</h5>
-                                        <h5>Issue number : {item.issue_number}</h5>
-                                        <h5>Cover date : <span className="badge badge-secondary">{item.cover_date}</span></h5>
-                                        <h5>In store date : <span className="badge badge-secondary">{item.store_date}</span></h5>
+                                        <h5><span className="font-weight-bold">Volume Name : </span>{item.volume.name}</h5>
+                                        <h5><span className="font-weight-bold">Issue Number : </span>{item.issue_number}</h5>
+                                        <h5><span className="font-weight-bold">Cover Date : </span>{item.cover_date}</h5>
+                                        <h5><span className="font-weight-bold">In Store Date : </span>{item.store_date}</h5>
                                     </div>
                                     <a className="btn btn-primary" href={item.site_detail_url}> + Add to my list</a>
                                 </div>
                                 <div className="col-md-7">
                                     <h5>Description</h5>
                                     <hr/>
-                                    {item.description}
+                                    {item.description?ReactHtmlParser(item.description): <div>No description.</div> }
                                 </div>
                             </div>
                         </div>
