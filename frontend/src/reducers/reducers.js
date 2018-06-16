@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-    REQUEST_PAGE,
-    RECEIVE_PAGE,
-    ADD_PHOTO,
-    REMOVED
+    RECEIVE_PAGE
 } from '../actions/actions'
 
 function display(state = {}, action) {

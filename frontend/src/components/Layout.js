@@ -33,6 +33,12 @@ class Layout extends React.Component {
                         <li className="nav-item">
                             <a className="nav-link" href="/users">Users</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/login">Login</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/register">Register</a>
+                        </li>
                     </ul>
                     <form className="navbar-form" action='/search' method="get">
                         <div className="input-group">

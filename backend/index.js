@@ -49,21 +49,36 @@ myRouter.route('/users')
     });
 })
 .post(function(req, res){
-      var user = new User();
-      user.username = req.query.username;
-      user.email = req.query.email;
-      user.password = req.query.password;
-      user.comics = JSON.parse(req.query.comics);
+      let user = new User();
+      let obj = req.body
+
+      user.username = obj.username;
+      user.email = obj.email;
+      user.password = obj.password;
+      user.comics = obj.comics
 
       console.log(user);
+      console.log(obj)
       
       user.save(function(err){
         if(err){
           res.send(err);
         }
-        res.json({message : 'User added in database'});
+        console.log('save')
+        res.send({message : 'User added in database'});
       });
-}); 
+});
+
+myRouter.route('/users/login')
+.post(function(req, res){
+    User.findOne({username:req.body.username, password:req.body.password},
+    function(err, user) {
+        if (err) {
+            res.status(400).send(err)
+        }
+        res.json(user)
+    })
+});
 
 myRouter.route('/users/:user_id')
 .get(function(req,res){ 
