@@ -65,9 +65,9 @@ class Issue extends React.Component {
                                     <a className="btn btn-primary" href={item.site_detail_url}> + Add to my list</a>
                                 </div>
                                 <div className="col-md-7">
-                                <h5>Description</h5>
-                                <hr/>
-                                {item.description}
+                                    <h5>Description</h5>
+                                    <hr/>
+                                    {item.description}
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ class Issue extends React.Component {
         {
             return (
                 <div className="container">
-                    Loading...
+                    <center>Loading...</center>
                 </div>
             )
         }

@@ -25,7 +25,11 @@ class IssueList extends React.Component {
                 })
             )
         }
-        return (<div>Loading...</div>)
+        return (
+        <div className="container">
+            <center>Loading...</center>
+        </div>
+        )
     }
 }
 

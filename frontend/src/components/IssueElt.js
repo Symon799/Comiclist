@@ -2,7 +2,6 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
-import { remove } from '../actions/actions';
 
 class IssueElt extends React.Component {
     constructor(props) {
@@ -15,7 +14,7 @@ class IssueElt extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <a href="#">
+                        <a href="/issue">
                             <img className="img-fluid rounded mb-3 mb-md-0" src={this.props.image} alt="" width="104" height="160" />
                         </a>
                     </div>
