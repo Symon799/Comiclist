@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux'
 import {
-    RECEIVE_PAGE
+    LOGGED_IN
 } from '../actions/actions'
 
-function display(state = {}, action) {
+function log(state = {}, action) {
     switch (action.type) {
-        case RECEIVE_PAGE:
+        case LOGGED_IN:
             return {
-                searchTag: state.searchTag,
-                issueList: action.page
+                logged: true
             }
 
         default:
@@ -17,7 +16,7 @@ function display(state = {}, action) {
 }
 
 const app = combineReducers({
-    display
+    log
 })
 
 export default app

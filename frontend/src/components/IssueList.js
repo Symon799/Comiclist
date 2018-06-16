@@ -3,7 +3,6 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import IssueElt from './IssueElt'
 import { connect } from 'react-redux';
-import { fetchPage } from '../actions/actions'
 
 class IssueList extends React.Component {
     constructor(props) {

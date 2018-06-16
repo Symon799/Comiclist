@@ -11,22 +11,34 @@ class Layout extends React.Component {
     }
 
     componentWillMount() {
+        console.log('mount')
         this.setState({
             userId: cookie.load('userId')
         }) 
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
+        this.setState({
+            userId: cookie.load('userId')
+        })
+    }
+
     logOut() {
         console.log('log out')
         cookie.remove('userId', { path: '/' })
+        this.setState({
+            userId: cookie.load('userId')
+        })
     }
 
     render() {
         const { userId } = this.state
         let account;
+        console.log('user id ' + userId)
         if (userId) {
             account = (
-                <a className="nav-link" href="/" onClick={() => this.logOut()}>Logout</a>
+                <a className="nav-link" onClick={() => this.logOut()}>Logout</a>
             )
         } else {
             account = (
@@ -87,4 +99,10 @@ class Layout extends React.Component {
     }
 }
 
-export default hot(module)(connect()(Layout))
+function mapStateToProps(state) {
+    return {
+        userId: state.log.logged
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(Layout))

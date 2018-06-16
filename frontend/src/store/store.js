@@ -8,10 +8,7 @@ const loggerMiddleware = createLogger()
 const store = createStore(
     app,
     {
-        display: {
-            searchTag: "batman",
-            issueList: []
-        }
+        log: false
     },
     applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
