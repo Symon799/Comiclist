@@ -32,10 +32,10 @@ class Layout extends React.Component {
     render() {
         const { userId } = this.state
         let account;
+        let profile;
         if (userId) {
-            account = (
-                <a className="nav-link" onClick={() => this.logOut()}>Logout</a>
-            )
+            account = <a className="nav-link" onClick={() => this.logOut()}>Logout</a>
+            profile = <a className="nav-link" href="/profile">Profile</a>
         } else {
             account = (
                 <div className="dropdown show">
@@ -49,6 +49,7 @@ class Layout extends React.Component {
                     </div>
                 </div>
             )
+            profile = <div></div>
         }
 
         return (
@@ -73,6 +74,9 @@ class Layout extends React.Component {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/users">Users</a>
+                        </li>
+                        <li className="nav-item">
+                            { profile }
                         </li>
                     </ul>
                     <form className="navbar-form pull-right" action='/search' method="get">

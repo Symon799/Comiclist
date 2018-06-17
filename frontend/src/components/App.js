@@ -12,6 +12,7 @@ import Login from './Login'
 import LastIssues from './LastIssues';
 import MyList from './MyList'
 import User from './User'
+import Profile from './Profile'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 class App extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/mylist" component={MyList}/>
+                        <Route exact path="/profile" component={Profile}/>
                     </Switch>
                 </Router>
                 <Footer/>

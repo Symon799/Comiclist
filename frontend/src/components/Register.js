@@ -47,7 +47,7 @@ class Register extends React.Component {
                 comics: []
             })
         }).then(response => response.json())
-        .then(obj => console.log(obj))
+        .then(obj => this.props.history.push('/login'))
     }
 
     render() {
