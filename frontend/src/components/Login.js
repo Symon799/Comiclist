@@ -19,8 +19,7 @@ class Login extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         console.log('id : ', nextProps.userId)
-        //cookie.save('userId', nextProps.userId, { path: '/' })
-        //this.props.history.push('/');
+        this.props.history.push('/');
     }
 
     updateUsername(username) {
