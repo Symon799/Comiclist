@@ -30,7 +30,6 @@ class Login extends React.Component {
     }
 
     onClickButton() {
-        console.log('click')
         fetch('http://localhost:4242/users/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -40,7 +39,6 @@ class Login extends React.Component {
             })
         }).then(response => response.json())
         .then(obj => {
-            console.log(obj)
             if (obj && obj._id) {
                 cookie.save('userId', obj._id, { path: '/' })
                 this.props.dispatch(login())

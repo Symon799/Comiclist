@@ -17,7 +17,6 @@ class IssueElt extends React.Component {
     }
 
     componentDidMount() {
-        //this.props.dispatch(fetchPage(0, 20))
         var urljson = 'http://localhost:4242/users/' + cookie.load('userId');
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())

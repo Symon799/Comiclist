@@ -38,7 +38,6 @@ class MyList extends React.Component {
    render() {
         if (this.state.issueList && this.state.issueList.length != 0)
         {
-            console.log(this.state.issueList);
             return (
                 this.state.issueList.map(function (item, i) {
                     return (

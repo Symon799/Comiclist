@@ -16,7 +16,6 @@ class Users extends React.Component {
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
             .then(obj => {
-                console.log(obj);
                 this.setState({usersList : obj});
             })
     }

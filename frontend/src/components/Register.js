@@ -36,7 +36,6 @@ class Register extends React.Component {
     }
 
     onClickButton() {
-        console.log('click')
         fetch('http://localhost:4242/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

@@ -33,7 +33,6 @@ class Issue extends React.Component {
             return (
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
-                    
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item active">
@@ -82,9 +81,6 @@ class Issue extends React.Component {
             )
         }
     }
-
-    //<IssueElt key={i} name={item.name} issueNb={item.issue_number} site ={item.site_detail_url} date ={item.cover_date} volume = {item.volume.name} image ={item.image.thumb_url}/>
-
 }
 
 export default hot(module)(connect()(Issue))

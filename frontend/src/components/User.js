@@ -13,12 +13,10 @@ class User extends React.Component {
 
     componentDidMount() {
         const idUser = this.props.match.params.id;
-        console.log('LID' + idUser);
         var urljson = 'http://localhost:4242/users/' + idUser;
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
             .then(obj => {
-                console.log(obj);
                 this.setState({userDetail : obj});
             })
     }

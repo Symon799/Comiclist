@@ -28,7 +28,6 @@ class Profile extends React.Component {
             headers: { 'Content-Type': 'application/json' }
         }).then(response => response.json())
         .then(obj => {
-            console.log(obj)
             this.setState({
                 username: obj.username,
                 email: obj.email,
@@ -63,15 +62,12 @@ class Profile extends React.Component {
     }
 
     onClickButton() {
-        console.log('click')
-
         if (this.state.password === this.state.password2 && this.state.password !== '') {
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
             }).then(response => response.json())
             .then(obj => {
-                console.log(obj)
                 this.setState({
                     comics: obj.comics
                 })
