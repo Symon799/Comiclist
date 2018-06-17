@@ -3,6 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import LastIssuesLine from './LastIssuesLine'
+import MyList from './MyList';
 
 class Home extends React.Component {
     constructor(props) {
@@ -36,16 +37,13 @@ class Home extends React.Component {
                 </div>
                 
                 <div className="container">
-                    <br/><h1>Last added issues</h1><br/>
+                    <br/><h1>Last added issues</h1>
                     <div className="row">
                         <LastIssuesLine/>
                     </div>
-
-                    <br/><h1>Watching</h1>
-                        issues Watching
-                    <br/><h1>Watched</h1>
-                        issues watched
                 </div>
+                <MyList/>
+
             </div>
         )
     }

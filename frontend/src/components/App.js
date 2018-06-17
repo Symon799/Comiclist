@@ -11,6 +11,7 @@ import Register from './Register'
 import Login from './Login'
 import LastIssues from './LastIssues';
 import MyList from './MyList'
+import User from './User'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
                         <Route exact path="/search" component={Search}/>
                         <Route exact path="/issues" component={LastIssues}/>
                         <Route path="/issue/:id" component={Issue}/>
+                        <Route path="/user/:id" component={User}/>
                         <Route exact path="/users" component={Users}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>

@@ -29,8 +29,9 @@ class Users extends React.Component {
                     return (
                         <div className="container">
                             {i == 0?<div><br/><h1>User List</h1><br/></div>: null }
+                            <a href={"/user/" + item._id}>
                             <div className="row">
-                                <div className="col-md-5">
+                                <div className="col-md-4">
                                     <span className="font-weight-bold">Username : </span>
                                     {item.username}
                                 </div>
@@ -38,11 +39,8 @@ class Users extends React.Component {
                                     <span className="font-weight-bold">Email : </span>
                                     {item.email}
                                 </div>
-                                <div className="col-md-7">
-                                    <span className="font-weight-bold">Id : </span>
-                                    {item._id}
-                                </div>
                             </div>
+                            </a>
                             <hr/>
                         </div>
                     )
