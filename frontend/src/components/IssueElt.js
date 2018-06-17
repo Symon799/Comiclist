@@ -21,7 +21,7 @@ class IssueElt extends React.Component {
         let userId = cookie.load('userId');
         if (userId)
         {
-            var urljson = 'http://localhost:4242/users/' + userId;
+            let urljson = 'http://localhost:4242/users/' + userId;
             fetch(urljson, {timeout: 5000})
                 .then((response) => response.json())
                 .then(obj => {
@@ -37,7 +37,7 @@ class IssueElt extends React.Component {
 
     isInComics(addId)
     {
-        var isInComics = false;
+        let isInComics = false;
         this.state.user.comics.forEach(element => {
             if (element == addId)
                 isInComics = true;
@@ -87,7 +87,7 @@ class IssueElt extends React.Component {
             .then(obj => {
 
                 this.setState({user: obj})
-                for(var i = this.state.user.comics.length - 1; i >= 0; i--) {
+                for(let i = this.state.user.comics.length - 1; i >= 0; i--) {
                     if (this.state.user.comics[i] === addId) {
                         this.state.user.comics.splice(i, 1);
                         this.setState({user: this.state.user});

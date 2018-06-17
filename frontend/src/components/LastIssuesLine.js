@@ -12,7 +12,7 @@ class LastIssuesLine extends React.Component {
     }
 
     componentDidMount() {
-        var urljson = 'http://localhost:4242/lastissues';
+        let urljson = 'http://localhost:4242/lastissues';
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
             .then(obj => {
