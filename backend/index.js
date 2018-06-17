@@ -8,32 +8,29 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use(express.static('../front/'))
 
-var hostname = 'localhost'; 
-var port = 4242; 
+let hostname = 'localhost'; 
+let port = 4242; 
 
 //DATABASE
-var mongoose = require('mongoose'); 
-var urlmongo = "mongodb://symon799:lalistecomique0@ds155730.mlab.com:55730/comiclist"; 
+let mongoose = require('mongoose'); 
+let urlmongo = "mongodb://symon799:lalistecomique0@ds155730.mlab.com:55730/comiclist"; 
 mongoose.connect(urlmongo);
-var db = mongoose.connection; 
+let db = mongoose.connection; 
 
 db.on('error', console.error.bind(console, 'Erreur lors de la connexion')); 
 db.once('open', function (){
     console.log("Connexion à la base OK");
 });
 
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json());
-
-var userSchema = mongoose.Schema({
+let userSchema = mongoose.Schema({
     username: String,
     email: String,
     password: String,
     comics: []
 });
 
-var User = mongoose.model('User', userSchema);
-var myRouter = express.Router();
+let User = mongoose.model('User', userSchema);
+let myRouter = express.Router();
 myRouter.route('/')
 .all(function(req,res){ 
       res.json({message : "Bienvenue sur l'API ", methode : req.method});
@@ -155,7 +152,7 @@ app.get('/', (req, res) => {
 
 app.get('/issues/:search_tag', function(req, res) {
     console.log('/issues/:search_tag')
-    var urljson = 'http://comicvine.com/api/search/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&format=json&sort=name:asc&resources=issue&query=' + req.params.search_tag;
+    let urljson = 'http://comicvine.com/api/search/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&format=json&sort=name:asc&resources=issue&query=' + req.params.search_tag;
     fetch(urljson, {timeout: 5000})
         .then((response) => response.json())
         .then(obj => {
@@ -167,7 +164,7 @@ app.get('/issues/:search_tag', function(req, res) {
 
 app.get('/issue/:issue_id', function(req, res) {
     console.log('/issue/:issue_id')
-    var urljson = 'https://comicvine.gamespot.com/api/issue/4000-' + req.params.issue_id + '/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&format=json';
+    let urljson = 'https://comicvine.gamespot.com/api/issue/4000-' + req.params.issue_id + '/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&format=json';
     fetch(urljson, {timeout: 5000})
         .then((response) => response.json())
         .then(obj => {
@@ -179,7 +176,7 @@ app.get('/issue/:issue_id', function(req, res) {
 
 app.get('/lastissues', function(req, res) {
     console.log('/lastissues')
-    var urljson = 'http://comicvine.com/api/issues/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&sort=store_date:desc&format=json';
+    let urljson = 'http://comicvine.com/api/issues/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&sort=store_date:desc&format=json';
     fetch(urljson, {timeout: 5000})
         .then((response) => response.json())
         .then(obj => {

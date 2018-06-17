@@ -82,7 +82,7 @@ export function getIssue(id) {
 
 export function getUser(id) {
     return (dispatch) => {
-        var urljson = 'http://localhost:4242/users/' + id;
+        let urljson = 'http://localhost:4242/users/' + id;
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
             .then(obj => {
