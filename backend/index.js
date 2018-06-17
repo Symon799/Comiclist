@@ -91,6 +91,7 @@ myRouter.route('/users/:user_id')
 })
 .put(function(req,res){
     console.log('/users/:user_id/PUT')
+    console.log(req.body)
                 User.findById(req.params.user_id, function(err, user) {
                     if (err){
                         res.send(err);

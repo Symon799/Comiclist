@@ -28,7 +28,7 @@ class Issue extends React.Component {
         let userId = cookie.load('userId');
         if (userId)
         {
-            var urljson = 'http://localhost:4242/users/' + userId;
+            let urljson = 'http://localhost:4242/users/' + userId;
             fetch(urljson, {timeout: 5000})
                 .then((response) => response.json())
                 .then(obj => {
@@ -65,7 +65,7 @@ class Issue extends React.Component {
     DeleteComic(addId) {
         if (this.isInComics(addId))
         {
-            for(var i = this.state.comics.length - 1; i >= 0; i--) {
+            for(let i = this.state.comics.length - 1; i >= 0; i--) {
                 if (this.state.comics[i] === addId) {
                     this.state.comics.splice(i, 1);
                     this.setState({comics: this.state.comics});
@@ -92,7 +92,7 @@ class Issue extends React.Component {
 
     isInComics(addId)
     {
-        var isInComics = false;
+        let isInComics = false;
         console.log(this.state.comics, addId);
         this.state.comics.forEach(element => {
             if (element == addId)

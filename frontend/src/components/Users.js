@@ -12,7 +12,7 @@ class Users extends React.Component {
     }
 
     componentDidMount() {        
-        var urljson = 'http://localhost:4242/users';
+        let urljson = 'http://localhost:4242/users';
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
             .then(obj => {

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-    LOGGED_IN, ISSUE_GET, USER_GET, REGISTERED, SEARCH
+    LOGGED_IN, ISSUE_GET, USER_GET, REGISTERED, SEARCH, LAST_ISSUES
 } from '../actions/actions'
 
 function log(state = {}, action) {
@@ -42,6 +42,11 @@ function user(state = {}, action) {
 function search(state = {}, action) {
     switch (action.type) {
         case SEARCH:
+            return {
+                result: action.result
+            }
+
+        case LAST_ISSUES:
             return {
                 result: action.result
             }

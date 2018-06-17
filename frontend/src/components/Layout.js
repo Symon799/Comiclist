@@ -38,7 +38,7 @@ class Layout extends React.Component {
         let mylist;
         
         if (userId) {
-            account = <a className="nav-link" onClick={() => this.logOut()}>Logout</a>
+            account = <a className="nav-link" href="/" onClick={() => this.logOut()}>Logout</a>
             profile = <a className="nav-link" href="/profile">Profile</a>
             mylist = <a className="nav-link" href="/mylist">MyList</a>
         } else {

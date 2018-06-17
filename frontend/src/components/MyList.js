@@ -30,12 +30,13 @@ class MyList extends React.Component {
         if (userId)
         {
             this.setState({logged : true});
-            var urljson = 'http://localhost:4242/users/' + userId;
+
+            let urljson = 'http://localhost:4242/users/' + userId;
             fetch(urljson, {timeout: 5000})
                 .then((response) => response.json())
                 .then(objUser => {
                     objUser.comics.forEach(element => {
-                        var urljson = 'http://localhost:4242/issue/' + element;
+                        let urljson = 'http://localhost:4242/issue/' + element;
                         fetch(urljson, {timeout: 5000})
                             .then((response) => response.json())
                             .then(obj => {

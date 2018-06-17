@@ -9,7 +9,6 @@ class IssueList extends React.Component {
         super(props)
     }
 
-
     render() {
         if (this.props.issueList.length != 0)
         {
@@ -43,9 +42,4 @@ class IssueList extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-    }
-}
-
-export default hot(module)(connect(mapStateToProps)(IssueList))
+export default hot(module)(connect()(IssueList))
