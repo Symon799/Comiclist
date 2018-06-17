@@ -3,6 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { getUser } from '../actions/actions'
+import MyList from './MyList';
 
 class User extends React.Component {
     constructor(props) {
@@ -35,6 +36,8 @@ class User extends React.Component {
                             <h5><span className="font-weight-bold"> Id : </span>{this.state.userDetail._id}</h5>
                         </center>
                     </div>
+                    <MyList userId={this.props.match.params.id}/>
+
                 </div>
 
             )

@@ -48,7 +48,6 @@ class IssueElt extends React.Component {
     addToWatch(addId) {
         if (this.isInComics(addId) == false)
         {
-
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
@@ -71,9 +70,6 @@ class IssueElt extends React.Component {
             .then(obj => this.setState({user: this.state.user}))
         
             })
-
-
-            
         }
     }
 
@@ -105,8 +101,6 @@ class IssueElt extends React.Component {
                     })
                 }).then(response => response.json())
                 .then(obj => this.setState({user: this.state.user}))
-
-
             })
         }
     }

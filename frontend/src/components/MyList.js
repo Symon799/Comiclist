@@ -2,8 +2,8 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
-import cookie from 'react-cookies'
 import IssueElt from './IssueElt'
+import cookie from 'react-cookies';
 
 
 class MyList extends React.Component {
@@ -17,11 +17,19 @@ class MyList extends React.Component {
     }
 
     componentDidMount() {
-        let userId = cookie.load('userId');
+        let userId;
+        if (this.props.userId)
+        {
+            userId = this.props.userId;
+        }
+        else
+        {
+            userId = cookie.load('userId');
+        }
+
         if (userId)
         {
             this.setState({logged : true});
-
             var urljson = 'http://localhost:4242/users/' + userId;
             fetch(urljson, {timeout: 5000})
                 .then((response) => response.json())
@@ -59,7 +67,7 @@ class MyList extends React.Component {
                     this.state.issueList.map(function (item, i) {
                         return (
                             <div className="container">
-                                {i == 0?<div><br/><h1>My List</h1><br/></div>: null }
+                                {i == 0?<div><br/><h1>Watched :</h1><br/></div>: null }
                                 <IssueElt key={i} id={item.id} name={item.name} issueNb={item.issue_number} site ={item.site_detail_url} date ={item.cover_date} volume = {item.volume.name} image ={item.image.thumb_url}/>
                                 <hr/>
                             </div>
