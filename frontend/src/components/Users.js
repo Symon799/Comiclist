@@ -38,6 +38,10 @@ class Users extends React.Component {
                                     <span className="font-weight-bold">Email : </span>
                                     {item.email}
                                 </div>
+                                <div className="col-md-7">
+                                    <span className="font-weight-bold">Id : </span>
+                                    {item._id}
+                                </div>
                             </div>
                             <hr/>
                         </div>
@@ -48,11 +52,9 @@ class Users extends React.Component {
         else
         {
             return (
-                
                 <div className="container">
                     <br/><h1>Users list</h1>
                         Loading...
-
                 </div>
             ) 
         }

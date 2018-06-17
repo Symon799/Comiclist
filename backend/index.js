@@ -55,7 +55,7 @@ myRouter.route('/users')
       user.username = obj.username;
       user.email = obj.email;
       user.password = obj.password;
-      user.comics = obj.comics
+      user.comics = obj.comics;
       
       user.save(function(err){
         if(err){
@@ -87,19 +87,25 @@ myRouter.route('/users/:user_id')
 })
 .put(function(req,res){ 
                 User.findById(req.params.user_id, function(err, user) {
-                if (err){
-                    res.send(err);
-                }
-                        user.nom = req.body.nom;
-                        user.adresse = req.body.adresse;
-                        user.tel = req.body.tel;
-                        user.description = req.body.description; 
-                                user.save(function(err){
-                                if(err){
-                                  res.send(err);
-                                }
-                                res.json({message : 'Bravo, mise à jour des données OK'});
-                              });                
+                    if (err){
+                        res.send(err);
+                    }
+                    console.log('PARAM :', req.params)
+                    console.log('BODY :',  req.body)
+
+                    user.username = req.body.username;
+                    user.email = req.body.email;
+                    user.password = req.body.password;
+                    user.comics = req.body.comics;
+                    console.log('user : ', user);
+
+                    user.save(function(err){
+
+                        if(err){
+                            res.send(err);
+                        }
+                        res.json({message : 'Bravo, mise à jour des données OK'});
+                    });                
                 });
 })
 .delete(function(req,res){ 

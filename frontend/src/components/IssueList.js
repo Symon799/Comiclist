@@ -17,7 +17,7 @@ class IssueList extends React.Component {
             if (this.props.issueList.results.length != 0)
             {
                 return (
-                    this.props.issueList.results.map(function (item, i) {
+                    this.props.issueList.results.slice(0, 20).map(function (item, i) {
                         return (
                             <div>
                                 <IssueElt key={i} id={item.id} name={item.name} issueNb={item.issue_number} site ={item.site_detail_url} date ={item.cover_date} volume = {item.volume.name} image ={item.image.thumb_url}/>

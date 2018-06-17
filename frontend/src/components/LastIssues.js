@@ -2,6 +2,8 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
+import IssueList from './IssueList'
+
 
 class LastIssues extends React.Component {
     constructor(props) {
@@ -13,7 +15,6 @@ class LastIssues extends React.Component {
 
     componentDidMount() {
         //this.props.dispatch(fetchPage(0, 20))
-        const query = new URLSearchParams(location.search);
         var urljson = 'http://localhost:4242/lastissues';
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())
@@ -23,30 +24,24 @@ class LastIssues extends React.Component {
     }
 
    render() {
-        if (this.state.issueList.length != 0)
-        {
+       if (this.state.issueList)
+       {
             return (
-                this.state.issueList.results.slice(0, 6).map(function (item, i) {
-                    console.log(item);
-                    return (
-                        <div className="col-md-2">
-                            <a href={"/issue/" + item.id}>
-                                <img className="img rounded mb-3 mb-md-0" src={item.image.medium_url} alt="" width="170" height="230"/>
-                            </a>
-                            <center><h5>{item.volume.name.slice(0, 16)}</h5></center>
-                        </div>
-                    )
-                })
+                <div className="container">
+                    <br/><h2>Last added Issues :</h2><br/>
+                    <IssueList issueList={this.state.issueList}/>
+                </div>
             )
         }
         else
         {
             return (
                 <div className="container">
-                   Loading...
+                    <br/>
+                    <center>Loading...</center>
                 </div>
             )
-        }      
+        }
     }
 }
 

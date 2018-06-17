@@ -58,7 +58,7 @@ class Layout extends React.Component {
                             <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/search">Issues</a>
+                            <a className="nav-link" href="/issues">Issues</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/mylist">MyList</a>
