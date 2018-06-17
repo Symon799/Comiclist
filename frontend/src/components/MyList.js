@@ -36,26 +36,43 @@ class MyList extends React.Component {
     }
 
    render() {
-        if (this.state.issueList && this.state.issueList.length != 0)
+        if (this.state.issueList)
+        {
+            if (this.state.issueList.length != 0)
+            {
+                return (
+                    this.state.issueList.map(function (item, i) {
+                        return (
+                            <div className="container">
+                                {i == 0?<div><br/><h1>My List</h1><br/></div>: null }
+                                <IssueElt key={i} id={item.id} name={item.name} issueNb={item.issue_number} site ={item.site_detail_url} date ={item.cover_date} volume = {item.volume.name} image ={item.image.thumb_url}/>
+                                <hr/>
+                            </div>
+                        )
+                    })
+                )
+            }
+        }
+
+        if (this.state.comics.length != 0)
         {
             return (
-                this.state.issueList.map(function (item, i) {
-                    return (
-                        <div className="container">
-                            {i == 0?<div><br/><h1>My List</h1><br/></div>: null }
-                            <IssueElt key={i} id={item.id} name={item.name} issueNb={item.issue_number} site ={item.site_detail_url} date ={item.cover_date} volume = {item.volume.name} image ={item.image.thumb_url}/>
-                            <hr/>
-                        </div>
-                    )
-                })
+                <div className="container">
+                    <br/><h1>My List</h1><br/>
+                    Loading...
+                </div>
             )
         }
-        return (
-            <div className="container">
-                <br/><h1>My List</h1><br/>
-                Loading...
-            </div>
-        )
+        else
+        {
+            return (
+                <div className="container">
+                    <br/><h1>My List</h1><br/>
+                    No Issues Addded !
+                </div>
+            )
+        }
+
     }
 }
 
