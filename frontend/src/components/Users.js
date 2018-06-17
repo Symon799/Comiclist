@@ -2,6 +2,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
+import { getUsers } from '../actions/actions'
 
 class Users extends React.Component {
     constructor(props) {
@@ -11,13 +12,12 @@ class Users extends React.Component {
         }
     }
 
-    componentDidMount() {        
-        let urljson = 'http://localhost:4242/users';
-        fetch(urljson, {timeout: 5000})
-            .then((response) => response.json())
-            .then(obj => {
-                this.setState({usersList : obj});
-            })
+    componentDidMount() {
+        this.props.dispatch(getUsers());
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({usersList : nextProps.usersList});
     }
 
    render() {
@@ -62,4 +62,10 @@ class Users extends React.Component {
     }
 }
 
-export default hot(module)(connect()(Users))
+function mapStateToProps(state) {
+    return {
+        usersList: state.users.users
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(Users))

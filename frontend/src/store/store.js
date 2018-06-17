@@ -11,6 +11,7 @@ const store = createStore(
         log: {},
         issue: {},
         user: {},
+        users: {},
         search: {}
     },
     applyMiddleware(thunkMiddleware, loggerMiddleware)

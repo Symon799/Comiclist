@@ -5,6 +5,7 @@
 export const LOGGED_IN = 'LOGGED_IN'
 export const ISSUE_GET = 'ISSUE_GET'
 export const USER_GET = 'USER_GET'
+export const USERS_GET = 'USERS_GET'
 export const REGISTERED = 'REGISTERED'
 export const SEARCH = 'SEARCH'
 export const LAST_ISSUES = 'LAST_ISSUES'
@@ -37,6 +38,13 @@ function userGet(obj) {
     return {
         type: USER_GET,
         user: obj
+    }
+}
+
+function usersGet(obj) {
+    return {
+        type: USERS_GET,
+        users: obj
     }
 }
 
@@ -87,6 +95,17 @@ export function getUser(id) {
             .then((response) => response.json())
             .then(obj => {
                 dispatch(userGet(obj))
+            })
+    }
+}
+
+export function getUsers() {
+    return (dispatch) => {
+        let urljson = 'http://localhost:4242/users';
+        fetch(urljson, {timeout: 5000})
+            .then((response) => response.json())
+            .then(obj => {
+                dispatch(usersGet(obj))
             })
     }
 }
