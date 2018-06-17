@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-    LOGGED_IN
+    LOGGED_IN, ISSUE_GET
 } from '../actions/actions'
 
 function log(state = {}, action) {
@@ -15,8 +15,21 @@ function log(state = {}, action) {
     }
 }
 
+function issue(state = {}, action) {
+    switch (action.type) {
+        case ISSUE_GET:
+            return {
+                issue: action.issue
+            }
+
+        default:
+            return state
+    }
+}
+
 const app = combineReducers({
-    log
+    log,
+    issue
 })
 
 export default app

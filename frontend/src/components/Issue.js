@@ -3,6 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import { getIssue } from '../actions/actions'
 
 class Issue extends React.Component {
     constructor(props) {
@@ -13,23 +14,18 @@ class Issue extends React.Component {
     }
 
     componentDidMount() {
-        //this.props.dispatch(fetchPage(0, 20))
-
-        //const query = new URLSearchParams(location.search);
-        //const idIssue = query.get('tag');
         const idIssue = this.props.match.params.id;
-        var urljson = 'http://localhost:4242/issue/' + idIssue;
-        fetch(urljson, {timeout: 5000})
-            .then((response) => response.json())
-            .then(obj => {
-                this.setState({issueList : obj});
-            })
+        this.props.dispatch(getIssue(idIssue))
     }
 
-   render() {
+    componentWillReceiveProps(nextProps) {
+        this.setState({issueList : nextProps.issueDetails});
+    }
+
+    render() {
        if (this.state.issueList.results)
        {
-           let item = this.state.issueList.results;
+            let item = this.state.issueList.results;
             return (
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
@@ -83,4 +79,10 @@ class Issue extends React.Component {
     }
 }
 
-export default hot(module)(connect()(Issue))
+function mapStateToProps(state) {
+    return {
+        issueDetails: state.issue.issue
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(Issue))
