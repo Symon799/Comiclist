@@ -12,7 +12,6 @@ class LastIssuesLine extends React.Component {
     }
 
     componentDidMount() {
-        //this.props.dispatch(fetchPage(0, 20))
         var urljson = 'http://localhost:4242/lastissues';
         fetch(urljson, {timeout: 5000})
             .then((response) => response.json())

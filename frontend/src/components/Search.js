@@ -3,7 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import IssueList from './IssueList'
-
+import { search } from '../actions/actions'
 
 class Search extends React.Component {
     constructor(props) {
@@ -15,14 +15,13 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
-        //this.props.dispatch(fetchPage(0, 20))
-        const query = new URLSearchParams(location.search);
-        var urljson = 'http://localhost:4242/issues/' + this.state.searchtag;
-        fetch(urljson, {timeout: 5000})
-            .then((response) => response.json())
-            .then(obj => {
-                this.setState({issueList : obj});
-            })
+        console.log('test')
+        this.props.dispatch(search(this.state.searchtag))
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('search result : ', nextProps.result)
+        this.setState({issueList : nextProps.result});
     }
 
    render() {
@@ -47,4 +46,11 @@ class Search extends React.Component {
     }
 }
 
-export default hot(module)(connect()(Search))
+function mapStateToProps(state) {
+    console.log('search state', state)
+    return {
+        result: state.search.result
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(Search))
