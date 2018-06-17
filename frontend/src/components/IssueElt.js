@@ -48,7 +48,13 @@ class IssueElt extends React.Component {
     addToWatch(addId) {
         if (this.isInComics(addId) == false)
         {
+
+            console.log(this.state.comics);
             this.state.comics.push(addId);
+            this.setState({comics: this.state.comics});
+            console.log(this.state.comics);
+
+
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -69,6 +75,7 @@ class IssueElt extends React.Component {
             for(var i = this.state.comics.length - 1; i >= 0; i--) {
                 if (this.state.comics[i] === addId) {
                     this.state.comics.splice(i, 1);
+                    this.setState({comics: this.state.comics});
                 }
             }
 
@@ -86,8 +93,17 @@ class IssueElt extends React.Component {
         }
     }
 
+    isInComics(addId)
+    {
+        var isInComics = false;
+        this.state.comics.forEach(element => {
+            if (element == addId)
+                isInComics = true;
+        });
+        return isInComics;
+    }
+
    render() {
-       console.log(this.state.comics);
         let button = <div></div>;
         if (this.state.logged)
         {

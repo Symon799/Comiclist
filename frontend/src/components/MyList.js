@@ -72,19 +72,10 @@ class MyList extends React.Component {
                 return (
                     <div className="container">
                         <br/><h1>My List</h1><br/>
-                        No Issues Addded !
+                        <center>Loading... (No Issues Addded ?)</center>
                     </div>
                 )
             }
-        }
-        else
-        {
-            return (
-                <div className="container">
-                    <br/><h1>My List</h1><br/>
-                    <center>Loading...</center>
-                </div>
-            )
         }
     }
 }
