@@ -67,13 +67,16 @@ class Register extends React.Component {
                     </div>
                 </nav>
                 <br/>
-                <form>
-                    <div>User name: <input type="text" name="username" onChange={this.updateUsername}/></div>
-                    <div>Email: <input type="text" name="email" onChange={this.updateEmail}/></div>
-                    <div>Password: <input type="password" name="password" onChange={this.updatePassword}/></div>
-                </form>
-                <button onClick={() => this.onClickButton()}>Register</button>
-                <div>{ error }</div>
+                <div className= "container">
+                    <form>
+                        <div>User name: <input className="form-control" type="text" name="username" onChange={this.updateUsername}/></div>
+                        <div>Email: <input className="form-control" type="text" name="email" onChange={this.updateEmail}/></div>
+                        <div>Password: <input className="form-control" type="password" name="password" onChange={this.updatePassword}/></div>
+                    </form>
+                    <br/>
+                    <button className="btn btn-primary" onClick={() => this.onClickButton()}>Register</button>
+                    <div>{ error }</div>
+                </div>
            </div>
        )
     }

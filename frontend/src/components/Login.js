@@ -64,7 +64,7 @@ class Login extends React.Component {
                         <div>Password: <input type="password" className="form-control" name="password" onChange={this.updatePassword}/></div>
                         </div>
                     </form>
-                    <button class="btn btn-primary" onClick={() => this.onClickButton()}>Log in</button>
+                    <button className="btn btn-primary" onClick={() => this.onClickButton()}>Log in</button>
                 </div>
             </div>
        )

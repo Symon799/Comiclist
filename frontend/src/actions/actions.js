@@ -54,7 +54,6 @@ export function login(user) {
             body: JSON.stringify(user)
         }).then(response => response.json())
         .then(obj => {
-            console.log('obj', obj)
             if (obj && obj._id) {
                 dispatch(loggedIn(obj._id))
             }

@@ -52,8 +52,6 @@ class User extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
-
     return {
         userDetails: state.user.user
     }

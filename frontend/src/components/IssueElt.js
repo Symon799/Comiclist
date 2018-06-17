@@ -9,8 +9,8 @@ class IssueElt extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            comics: [],
-            logged: false
+            logged: false,
+            user: []
         }
         this.addToWatch = this.addToWatch.bind(this)
         this.DeleteComic = this.DeleteComic.bind(this)
@@ -25,7 +25,8 @@ class IssueElt extends React.Component {
             fetch(urljson, {timeout: 5000})
                 .then((response) => response.json())
                 .then(obj => {
-                    this.setState({comics : obj.comics, logged : true});
+                    this.setState({user : obj, logged : true});
+                    console.log(obj);
                 }
             )
         }
@@ -38,7 +39,7 @@ class IssueElt extends React.Component {
     isInComics(addId)
     {
         var isInComics = false;
-        this.state.comics.forEach(element => {
+        this.state.user.comics.forEach(element => {
             if (element == addId)
                 isInComics = true;
         });
@@ -49,33 +50,33 @@ class IssueElt extends React.Component {
         if (this.isInComics(addId) == false)
         {
 
-            console.log(this.state.comics);
-            this.state.comics.push(addId);
-            this.setState({comics: this.state.comics});
-            console.log(this.state.comics);
+            console.log(this.state.user.comics);
+            this.state.user.comics.push(addId);
+            this.setState({user: this.state.user});
+            console.log(this.state.user.comics);
 
 
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    username: this.state.username,
-                    email: this.state.email,
-                    password: this.state.password,
-                    comics: this.state.comics
+                    username: this.state.user.username,
+                    email: this.state.user.email,
+                    password: this.state.user.password,
+                    comics: this.state.user.comics
                 })
             }).then(response => response.json())
-            .then(obj => this.setState({comics: this.state.comics}))
+            .then(obj => this.setState({comics: this.state.user.comics}))
         }
     }
 
     DeleteComic(addId) {
         if (this.isInComics(addId))
         {
-            for(var i = this.state.comics.length - 1; i >= 0; i--) {
-                if (this.state.comics[i] === addId) {
-                    this.state.comics.splice(i, 1);
-                    this.setState({comics: this.state.comics});
+            for(var i = this.state.user.comics.length - 1; i >= 0; i--) {
+                if (this.state.user.comics[i] === addId) {
+                    this.state.user.comics.splice(i, 1);
+                    this.setState({comics: this.state.user.comics});
                 }
             }
 
@@ -83,13 +84,13 @@ class IssueElt extends React.Component {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    username: this.state.username,
-                    email: this.state.email,
-                    password: this.state.password,
-                    comics: this.state.comics
+                    username: this.state.user.username,
+                    email: this.state.user.email,
+                    password: this.state.user.password,
+                    comics: this.state.user.comics
                 })
             }).then(response => response.json())
-            .then(obj => this.setState({comics: this.state.comics}))
+            .then(obj => this.setState({comics: this.state.user.comics}))
         }
     }
 

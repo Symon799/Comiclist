@@ -117,7 +117,7 @@ class Profile extends React.Component {
                         <div>Confirm New Password: <input type="password" className="form-control"  name="password2" value={this.state.password2} onChange={this.updatePassword2}/></div>
                     </form>
                     <br/>
-                    <button class="btn btn-primary" onClick={() => this.onClickButton()}>Edit Profile</button>
+                    <button className="btn btn-primary" onClick={() => this.onClickButton()}>Edit Profile</button>
                 </div>
                 <div>
                     <MyList/>
