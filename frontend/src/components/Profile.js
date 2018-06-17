@@ -108,14 +108,16 @@ class Profile extends React.Component {
                         </div>
                     </nav>
                 </div>
-                <div>
+                <div className="container">
                     <form>
-                        <div>User name: <input type="text" name="username" value={this.state.username} onChange={this.updateUsername}/></div>
-                        <div>Email: <input type="text" name="email" value={this.state.email} onChange={this.updateEmail}/></div>
-                        <div>New Password: <input type="password" name="password" value={this.state.password} onChange={this.updatePassword}/></div>
-                        <div>Confirm New Password: <input type="password" name="password2" value={this.state.password2} onChange={this.updatePassword2}/></div>
+                        <br/>
+                        <div>User name: <input type="text" className="form-control"  name="username" value={this.state.username} onChange={this.updateUsername}/></div>
+                        <div>Email: <input type="text" className="form-control"  name="email" value={this.state.email} onChange={this.updateEmail}/></div>
+                        <div>New Password: <input type="password" className="form-control"  name="password" value={this.state.password} onChange={this.updatePassword}/></div>
+                        <div>Confirm New Password: <input type="password" className="form-control"  name="password2" value={this.state.password2} onChange={this.updatePassword2}/></div>
                     </form>
-                    <button onClick={() => this.onClickButton()}>Edit Profile</button>
+                    <br/>
+                    <button class="btn btn-primary" onClick={() => this.onClickButton()}>Edit Profile</button>
                 </div>
                 <div>
                     <MyList/>

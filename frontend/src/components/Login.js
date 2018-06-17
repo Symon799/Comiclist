@@ -44,7 +44,7 @@ class Login extends React.Component {
 
     render() {
        return (
-            <div>
+           <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
@@ -56,12 +56,16 @@ class Login extends React.Component {
                         </ul>
                     </div>
                 </nav>
-                <br/>
-                <form>
-                    <div>User name: <input type="text" name="username" onChange={this.updateUsername}/></div>
-                    <div>Password: <input type="password" name="password" onChange={this.updatePassword}/></div>
-                </form>
-                <button onClick={() => this.onClickButton()}>Log in</button>
+                <div className="container">
+                    <br/>
+                    <form>
+                        <div class="form-group">
+                        <div>User name: <input type="text" className="form-control" name="username" onChange={this.updateUsername}/></div>
+                        <div>Password: <input type="password" className="form-control" name="password" onChange={this.updatePassword}/></div>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" onClick={() => this.onClickButton()}>Log in</button>
+                </div>
             </div>
        )
     }

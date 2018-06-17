@@ -93,16 +93,6 @@ class IssueElt extends React.Component {
         }
     }
 
-    isInComics(addId)
-    {
-        var isInComics = false;
-        this.state.comics.forEach(element => {
-            if (element == addId)
-                isInComics = true;
-        });
-        return isInComics;
-    }
-
    render() {
         let button = <div></div>;
         if (this.state.logged)
