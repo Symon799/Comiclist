@@ -7,6 +7,7 @@ export const ISSUE_GET = 'ISSUE_GET'
 export const USER_GET = 'USER_GET'
 export const REGISTERED = 'REGISTERED'
 export const SEARCH = 'SEARCH'
+export const LAST_ISSUES = 'LAST_ISSUES'
 
 /*
  * action creators
@@ -42,6 +43,13 @@ function userGet(obj) {
 function searchResult(res) {
     return {
         type: SEARCH,
+        result: res
+    }
+}
+
+function last(res) {
+    return {
+        type: LAST_ISSUES,
         result: res
     }
 }
@@ -101,6 +109,17 @@ export function search(tags) {
             .then((response) => response.json())
             .then(obj => {
                 dispatch(searchResult(obj))
+            })
+    }
+}
+
+export function lastissues() {
+    return (dispatch) => {
+        let urljson = 'http://localhost:4242/lastissues';
+        fetch(urljson, {timeout: 5000})
+            .then((response) => response.json())
+            .then(obj => {
+                dispatch(last(obj))
             })
     }
 }

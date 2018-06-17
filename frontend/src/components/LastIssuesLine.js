@@ -2,6 +2,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
+import { lastissues } from '../actions/actions'
 
 class LastIssuesLine extends React.Component {
     constructor(props) {
@@ -12,15 +13,15 @@ class LastIssuesLine extends React.Component {
     }
 
     componentDidMount() {
-        let urljson = 'http://localhost:4242/lastissues';
-        fetch(urljson, {timeout: 5000})
-            .then((response) => response.json())
-            .then(obj => {
-                this.setState({issueList : obj});
-        })
+        this.props.dispatch(lastissues())
     }
 
-   render() {
+    componentWillReceiveProps(nextProps) {
+        console.log('search result : ', nextProps.result)
+        this.setState({issueList : nextProps.result});
+    }
+
+    render() {
         if (this.state.issueList.length != 0)
         {
             return (
@@ -47,4 +48,11 @@ class LastIssuesLine extends React.Component {
     }
 }
 
-export default hot(module)(connect()(LastIssuesLine))
+function mapStateToProps(state) {
+    console.log('search state', state)
+    return {
+        result: state.search.result
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(LastIssuesLine))
