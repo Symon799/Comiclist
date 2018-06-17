@@ -33,9 +33,12 @@ class Layout extends React.Component {
         const { userId } = this.state
         let account;
         let profile;
+        let mylist;
+        
         if (userId) {
             account = <a className="nav-link" onClick={() => this.logOut()}>Logout</a>
             profile = <a className="nav-link" href="/profile">Profile</a>
+            mylist = <a className="nav-link" href="/mylist">MyList</a>
         } else {
             account = (
                 <div className="dropdown show">
@@ -50,6 +53,7 @@ class Layout extends React.Component {
                 </div>
             )
             profile = <div></div>
+            mylist = <div></div>
         }
 
         return (
@@ -70,7 +74,7 @@ class Layout extends React.Component {
                             <a className="nav-link" href="/issues">Issues</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/mylist">MyList</a>
+                            { mylist }
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/users">Users</a>
