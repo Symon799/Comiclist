@@ -9,7 +9,8 @@ class IssueElt extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            comics: []
+            comics: [],
+            logged: false
         }
         this.addToWatch = this.addToWatch.bind(this)
         this.DeleteComic = this.DeleteComic.bind(this)
@@ -17,26 +18,37 @@ class IssueElt extends React.Component {
     }
 
     componentDidMount() {
-        var urljson = 'http://localhost:4242/users/' + cookie.load('userId');
-        fetch(urljson, {timeout: 5000})
-            .then((response) => response.json())
-            .then(obj => {
-                this.setState({comics : obj.comics});
-            }
-        )
+        let userId = cookie.load('userId');
+        if (userId)
+        {
+            var urljson = 'http://localhost:4242/users/' + userId;
+            fetch(urljson, {timeout: 5000})
+                .then((response) => response.json())
+                .then(obj => {
+                    this.setState({comics : obj.comics, logged : true});
+                }
+            )
+        }
+        else
+        {
+            this.setState({logged : false});
+        }
     }
 
-    addToWatch(addId) {
-        let isInComics = false;
+    isInComics(addId)
+    {
+        var isInComics = false;
         this.state.comics.forEach(element => {
             if (element == addId)
                 isInComics = true;
         });
+        return isInComics;
+    }
 
-        this.state.comics.push(addId);
-
-        if (isInComics == false)
+    addToWatch(addId) {
+        if (this.isInComics(addId) == false)
         {
+            this.state.comics.push(addId);
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -52,17 +64,14 @@ class IssueElt extends React.Component {
     }
 
     DeleteComic(addId) {
-        let isInComics = false;
-
-        for(var i = this.state.comics.length - 1; i >= 0; i--) {
-            if (this.state.comics[i] === addId) {
-                isInComics = true;
-                this.state.comics.splice(i, 1);
-            }
-        }
-
-        if (isInComics == true)
+        if (this.isInComics(addId))
         {
+            for(var i = this.state.comics.length - 1; i >= 0; i--) {
+                if (this.state.comics[i] === addId) {
+                    this.state.comics.splice(i, 1);
+                }
+            }
+
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -77,34 +86,28 @@ class IssueElt extends React.Component {
         }
     }
 
-    isInComics(addId)
-    {
-        var isInComics = false;
-        this.state.comics.forEach(element => {
-            if (element == addId)
-                isInComics = true;
-        });
-        return !isInComics;
-    }
-
    render() {
+       console.log(this.state.comics);
         let button = <div></div>;
-        if (this.isInComics(this.props.id) == true)
+        if (this.state.logged)
         {
-            button = (
-                <div className="container">
-                    <a className="btn btn-primary text-white float-right" onClick={() => this.addToWatch(this.props.id)}>+ Watched</a>
-                </div>
-            )
-            
-        }
-        else
-        {
-            button = (
-                <div className="container">
-                    <a className="btn btn-danger text-white float-right" onClick={() => this.DeleteComic(this.props.id)}>X</a>
-                </div>
-            )
+            if (this.isInComics(this.props.id) == false)
+            {
+                button = (
+                    <div className="container">
+                        <a className="btn btn-primary text-white float-right" onClick={() => this.addToWatch(this.props.id)}>+ Watched</a>
+                    </div>
+                )
+                
+            }
+            else
+            {
+                button = (
+                    <div className="container">
+                        <a className="btn btn-danger text-white float-right" onClick={() => this.DeleteComic(this.props.id)}>X</a>
+                    </div>
+                )
+            }
         }
 
         return (

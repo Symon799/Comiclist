@@ -26,7 +26,6 @@ class LastIssuesLine extends React.Component {
         {
             return (
                 this.state.issueList.results.slice(0, 6).map(function (item, i) {
-                    console.log(item);
                     return (
                         <div className="col-md-2">
                             <a href={"/issue/" + item.id}>
@@ -42,7 +41,7 @@ class LastIssuesLine extends React.Component {
         {
             return (
                 <div className="container">
-                   Loading...
+                   <center>Loading...</center>
                 </div>
             )
         }      

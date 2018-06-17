@@ -11,34 +11,49 @@ class MyList extends React.Component {
         super(props)
         this.state = {
             comics: [],
-            issueList: []
+            issueList: [],
+            logged: false
         }
     }
 
     componentDidMount() {
-        var urljson = 'http://localhost:4242/users/' + cookie.load('userId');
-        fetch(urljson, {timeout: 5000})
-            .then((response) => response.json())
-            .then(obj => {
-                this.setState({comics : obj.comics});
+        let userId = cookie.load('userId');
+        if (userId)
+        {
+            this.setState({logged : true});
 
-                this.state.comics.forEach(element => {
-                    var urljson = 'http://localhost:4242/issue/' + element;
-                    fetch(urljson, {timeout: 5000})
-                        .then((response) => response.json())
-                        .then(obj => {
-                            this.state.issueList.push(obj.results);
-                            this.setState({comics : this.state.issueList.comics});
-                        })
-                });
-            }
-        )
+            var urljson = 'http://localhost:4242/users/' + userId;
+            fetch(urljson, {timeout: 5000})
+                .then((response) => response.json())
+                .then(objUser => {
+                    objUser.comics.forEach(element => {
+                        var urljson = 'http://localhost:4242/issue/' + element;
+                        fetch(urljson, {timeout: 5000})
+                            .then((response) => response.json())
+                            .then(obj => {
+                                this.state.issueList.push(obj.results);
+                                this.setState({comics : objUser.comics});
+                            })
+                    });
+                }
+            )
+        }
     }
 
    render() {
+        if (this.state.logged == false)
+        {
+            return (
+                <div className="container">
+                    <br/><h1>My List</h1><br/>
+                    Connect or create an account to keep track of your comics!
+                </div>
+            )
+        }
+
         if (this.state.issueList)
         {
-            if (this.state.issueList.length != 0)
+            if (this.state.comics.length != 0)
             {
                 return (
                     this.state.issueList.map(function (item, i) {
@@ -52,27 +67,25 @@ class MyList extends React.Component {
                     })
                 )
             }
-        }
-
-        if (this.state.comics.length != 0)
-        {
-            return (
-                <div className="container">
-                    <br/><h1>My List</h1><br/>
-                    Loading...
-                </div>
-            )
+            else
+            {
+                return (
+                    <div className="container">
+                        <br/><h1>My List</h1><br/>
+                        No Issues Addded !
+                    </div>
+                )
+            }
         }
         else
         {
             return (
                 <div className="container">
                     <br/><h1>My List</h1><br/>
-                    No Issues Addded !
+                    <center>Loading...</center>
                 </div>
             )
         }
-
     }
 }
 
