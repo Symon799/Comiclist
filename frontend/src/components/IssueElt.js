@@ -26,7 +26,6 @@ class IssueElt extends React.Component {
                 .then((response) => response.json())
                 .then(obj => {
                     this.setState({user : obj, logged : true});
-                    console.log(obj);
                 }
             )
         }
@@ -50,13 +49,16 @@ class IssueElt extends React.Component {
         if (this.isInComics(addId) == false)
         {
 
-            console.log(this.state.user.comics);
-            this.state.user.comics.push(addId);
-            this.setState({user: this.state.user});
-            console.log(this.state.user.comics);
-
-
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.json())
+            .then(obj => {
+                
+                this.setState({user: obj})
+                this.state.user.comics.push(addId);
+
+                fetch('http://localhost:4242/users/' + cookie.load('userId'), {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -66,31 +68,46 @@ class IssueElt extends React.Component {
                     comics: this.state.user.comics
                 })
             }).then(response => response.json())
-            .then(obj => this.setState({comics: this.state.user.comics}))
+            .then(obj => this.setState({user: this.state.user}))
+        
+            })
+
+
+            
         }
     }
 
     DeleteComic(addId) {
         if (this.isInComics(addId))
         {
-            for(var i = this.state.user.comics.length - 1; i >= 0; i--) {
-                if (this.state.user.comics[i] === addId) {
-                    this.state.user.comics.splice(i, 1);
-                    this.setState({comics: this.state.user.comics});
-                }
-            }
-
             fetch('http://localhost:4242/users/' + cookie.load('userId'), {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    username: this.state.user.username,
-                    email: this.state.user.email,
-                    password: this.state.user.password,
-                    comics: this.state.user.comics
-                })
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             }).then(response => response.json())
-            .then(obj => this.setState({comics: this.state.user.comics}))
+            .then(obj => {
+
+                this.setState({user: obj})
+                for(var i = this.state.user.comics.length - 1; i >= 0; i--) {
+                    if (this.state.user.comics[i] === addId) {
+                        this.state.user.comics.splice(i, 1);
+                        this.setState({user: this.state.user});
+                    }
+                }
+
+                fetch('http://localhost:4242/users/' + cookie.load('userId'), {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: this.state.user.username,
+                        email: this.state.user.email,
+                        password: this.state.user.password,
+                        comics: this.state.user.comics
+                    })
+                }).then(response => response.json())
+                .then(obj => this.setState({user: this.state.user}))
+
+
+            })
         }
     }
 
