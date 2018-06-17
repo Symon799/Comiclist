@@ -123,6 +123,28 @@ myRouter.route('/users/:user_id')
     }); 
     
 });
+
+myRouter.route('/issue/:user_id')
+.post(function(req, res) {
+    console.log('/issue/:user_id')
+    User.findById(req.params.user_id, function(err, user) {
+        if (err) {
+            res.send(err)
+        }
+
+        console.log('PARAM :', req.params)
+        console.log('BODY :',  req.body)
+
+        user.comics.push(req.body)
+        user.save(function(err){
+            if(err){
+                res.send(err);
+            }
+            res.json({message : 'Bravo, mise à jour des comics OK'});
+        })
+    })
+})
+
 app.use(myRouter);
 
 app.get('/', (req, res) => {
@@ -164,6 +186,5 @@ app.get('/lastissues', function(req, res) {
         })
     
 });
-
 
 app.listen(port, () => console.log('App listening on port ' + port))
