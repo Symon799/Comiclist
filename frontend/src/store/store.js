@@ -8,7 +8,7 @@ const loggerMiddleware = createLogger()
 const store = createStore(
     app,
     {
-        log: false,
+        log: {},
         issue: {},
         user: {}
     },

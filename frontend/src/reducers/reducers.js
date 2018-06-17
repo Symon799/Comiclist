@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
 import {
-    LOGGED_IN, ISSUE_GET, USER_GET
+    LOGGED_IN, ISSUE_GET, USER_GET, REGISTERED
 } from '../actions/actions'
 
 function log(state = {}, action) {
     switch (action.type) {
         case LOGGED_IN:
             return {
-                logged: true
+                logged: action.id
             }
 
         default:

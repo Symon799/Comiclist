@@ -40,7 +40,8 @@ myRouter.route('/')
 });
   
 myRouter.route('/users')
-.get(function(req,res){ 
+.get(function(req,res){
+    console.log('/users/GET')
 	User.find(function(err, users){
         if (err){
             res.send(err); 
@@ -49,6 +50,7 @@ myRouter.route('/users')
     });
 })
 .post(function(req, res){
+    console.log('/users/POST')
       let user = new User();
       let obj = req.body
 
@@ -68,6 +70,7 @@ myRouter.route('/users')
 
 myRouter.route('/users/login')
 .post(function(req, res){
+    console.log('/users/login')
     User.findOne({username:req.body.username, password:req.body.password},
     function(err, user) {
         if (err) {
@@ -78,7 +81,8 @@ myRouter.route('/users/login')
 });
 
 myRouter.route('/users/:user_id')
-.get(function(req,res){ 
+.get(function(req,res){
+    console.log('/users/:user_id/GET')
             User.findById(req.params.user_id, function(err, user) {
             if (err)
                 res.send(err);
@@ -86,6 +90,7 @@ myRouter.route('/users/:user_id')
         });
 })
 .put(function(req,res){
+    console.log('/users/:user_id/PUT')
                 User.findById(req.params.user_id, function(err, user) {
                     if (err){
                         res.send(err);
@@ -109,7 +114,7 @@ myRouter.route('/users/:user_id')
                 });
 })
 .delete(function(req,res){ 
-
+    console.log('/users/:user_id/DELETE')
     User.remove({_id: req.params.user_id}, function(err, user){
         if (err){
             res.send(err); 
@@ -121,10 +126,12 @@ myRouter.route('/users/:user_id')
 app.use(myRouter);
 
 app.get('/', (req, res) => {
+    console.log('/')
     res.sendFile('../front/index.html')
 })
 
 app.get('/issues/:search_tag', function(req, res) {
+    console.log('/issues/:search_tag')
     var urljson = 'http://comicvine.com/api/search/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&format=json&sort=name:asc&resources=issue&query=' + req.params.search_tag;
     fetch(urljson, {timeout: 5000})
         .then((response) => response.json())
@@ -136,6 +143,7 @@ app.get('/issues/:search_tag', function(req, res) {
 });
 
 app.get('/issue/:issue_id', function(req, res) {
+    console.log('/issue/:issue_id')
     var urljson = 'https://comicvine.gamespot.com/api/issue/4000-' + req.params.issue_id + '/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&format=json';
     fetch(urljson, {timeout: 5000})
         .then((response) => response.json())
@@ -147,6 +155,7 @@ app.get('/issue/:issue_id', function(req, res) {
 });
 
 app.get('/lastissues', function(req, res) {
+    console.log('/lastissues')
     var urljson = 'http://comicvine.com/api/issues/?api_key=bfe593ac67ddb3ec8ffc18324cf2cb52a995c7d5&sort=store_date:desc&format=json';
     fetch(urljson, {timeout: 5000})
         .then((response) => response.json())

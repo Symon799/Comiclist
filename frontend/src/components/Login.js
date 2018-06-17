@@ -17,6 +17,12 @@ class Login extends React.Component {
         this.onClickButton = this.onClickButton.bind(this)
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('id : ', nextProps.userId)
+        //cookie.save('userId', nextProps.userId, { path: '/' })
+        //this.props.history.push('/');
+    }
+
     updateUsername(username) {
         this.setState({
             username: username.target.value
@@ -30,21 +36,11 @@ class Login extends React.Component {
     }
 
     onClickButton() {
-        fetch('http://localhost:4242/users/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
-            })
-        }).then(response => response.json())
-        .then(obj => {
-            if (obj && obj._id) {
-                cookie.save('userId', obj._id, { path: '/' })
-                this.props.dispatch(login())
-                this.props.history.push('/');
-            }
-        })
+        let user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        this.props.dispatch(login(user))
     }
 
     render() {
@@ -72,4 +68,10 @@ class Login extends React.Component {
     }
 }
 
-export default hot(module)(connect()(Login))
+function mapStateToProps(state) {
+    return {
+        userId: state.log.logged
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(Login))
