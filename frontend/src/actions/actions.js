@@ -6,6 +6,7 @@ export const LOGGED_IN = 'LOGGED_IN'
 export const ISSUE_GET = 'ISSUE_GET'
 export const USER_GET = 'USER_GET'
 export const REGISTERED = 'REGISTERED'
+export const SEARCH = 'SEARCH'
 
 /*
  * action creators
@@ -35,6 +36,13 @@ function userGet(obj) {
     return {
         type: USER_GET,
         user: obj
+    }
+}
+
+function searchResult(res) {
+    return {
+        type: SEARCH,
+        result: res
     }
 }
 
@@ -84,5 +92,16 @@ export function register(user) {
             body: JSON.stringify(user)
         }).then(response => response.json())
         .then(dispatch(registered()))
+    }
+}
+
+export function search(tags) {
+    return (dispatch) => {
+        let urljson = 'http://localhost:4242/issues/' + tags
+        fetch(urljson, {timeout: 5000})
+            .then((response) => response.json())
+            .then(obj => {
+                dispatch(searchResult(obj))
+            })
     }
 }
