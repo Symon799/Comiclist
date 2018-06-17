@@ -17,7 +17,6 @@ class LastIssuesLine extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('search result : ', nextProps.result)
         this.setState({issueList : nextProps.result});
     }
 
@@ -49,7 +48,6 @@ class LastIssuesLine extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log('search state', state)
     return {
         result: state.search.result
     }

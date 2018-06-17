@@ -3,7 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import IssueList from './IssueList'
-
+import { lastissues } from '../actions/actions'
 
 class LastIssues extends React.Component {
     constructor(props) {
@@ -14,12 +14,11 @@ class LastIssues extends React.Component {
     }
 
     componentDidMount() {
-        let urljson = 'http://localhost:4242/lastissues';
-        fetch(urljson, {timeout: 5000})
-            .then((response) => response.json())
-            .then(obj => {
-                this.setState({issueList : obj});
-            })
+        this.props.dispatch(lastissues())
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({issueList : nextProps.result});
     }
 
    render() {
@@ -44,4 +43,10 @@ class LastIssues extends React.Component {
     }
 }
 
-export default hot(module)(connect()(LastIssues))
+function mapStateToProps(state) {
+    return {
+        result: state.search.result
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(LastIssues))
