@@ -68,12 +68,25 @@ function search(state = {}, action) {
     }
 }
 
+function registered(state = {}, action) {
+    switch (action.type) {
+        case REGISTERED:
+            return {
+                error: action.error
+            }
+
+        default:
+            return state
+    }
+}
+
 const app = combineReducers({
     log,
     issue,
     user,
     users,
-    search
+    search,
+    registered
 })
 
 export default app

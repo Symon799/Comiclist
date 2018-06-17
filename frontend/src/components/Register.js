@@ -10,12 +10,23 @@ class Register extends React.Component {
         this.state = {
             username: "",
             email: "",
-            password: ""
+            password: "",
+            error: false
         }
         this.updateUsername = this.updateUsername.bind(this)
         this.updateEmail = this.updateEmail.bind(this)
         this.updatePassword = this.updatePassword.bind(this)
         this.onClickButton = this.onClickButton.bind(this)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'success') {
+            this.props.history.push('/login')
+        } else {
+            this.setState({
+                error: true
+            })
+        }
     }
 
     updateUsername(username) {
@@ -44,13 +55,12 @@ class Register extends React.Component {
             comics: []
         }
         this.props.dispatch(register(user))
-        this.props.history.push('/login')
     }
 
     render() {
         let error;
         if (this.state.error) {
-            <p>Login or Password incorrect</p>
+            error = <p>Username or email already used</p>
         }
 
         return (
@@ -82,4 +92,10 @@ class Register extends React.Component {
     }
 }
 
-export default hot(module)(connect()(Register))
+function mapStateToProps(state) {
+    return {
+        error: state.registered.error
+    }
+}
+
+export default hot(module)(connect(mapStateToProps)(Register))

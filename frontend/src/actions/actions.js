@@ -21,9 +21,10 @@ function loggedIn(obj) {
     }
 }
 
-function registered() {
+function registered(obj) {
     return {
-        type: REGISTERED
+        type: REGISTERED,
+        error: obj
     }
 }
 
@@ -112,12 +113,27 @@ export function getUsers() {
 
 export function register(user) {
     return (dispatch) => {
-        fetch('http://localhost:4242/users', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user)
-        }).then(response => response.json())
-        .then(dispatch(registered()))
+        fetch('http://localhost:4242/users')
+        .then((response) => response.json())
+        .then(obj => {
+            let success = true
+            
+            obj.forEach(element => {
+                if (element.email === user.email || element.username === user.username) {
+                    dispatch(registered('error'))
+                    success = false
+                }
+            })
+
+            if (success) {
+                fetch('http://localhost:4242/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(user)
+                }).then(response => response.json())
+                .then(dispatch(registered('success')))
+            }
+        })
     }
 }
 

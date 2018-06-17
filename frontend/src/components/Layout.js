@@ -17,7 +17,6 @@ class Layout extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('id layout : ', nextProps.userId)
         cookie.save('userId', nextProps.userId, { path: '/' })
         this.setState({
             userId: cookie.load('userId')
