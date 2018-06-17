@@ -30,11 +30,15 @@ class Users extends React.Component {
                             {i == 0?<div><br/><h1>User List</h1><br/></div>: null }
                             <a href={"/user/" + item._id}>
                             <div className="row">
-                                <div className="col-md-4">
+
+                                
+                                <div className="col-md-2">
+                                    <img className="img-fluid rounded mb-3 mb-md-0" src="https://www.freeiconspng.com/uploads/profile-icon-9.png" width="30px"/>
+                                </div><div className="col-md-4">
                                     <span className="font-weight-bold">Username : </span>
                                     {item.username}
                                 </div>
-                                <div className="col-md-7">
+                                <div className="col-md-4">
                                     <span className="font-weight-bold">Email : </span>
                                     {item.email}
                                 </div>
