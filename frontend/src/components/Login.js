@@ -3,7 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import cookie from 'react-cookies'
-import { Link, withRouter } from 'react-router-dom'
+import { login } from '../actions/actions'
 
 class Login extends React.Component {
     constructor(props) {
@@ -43,16 +43,16 @@ class Login extends React.Component {
             console.log(obj)
             if (obj && obj._id) {
                 cookie.save('userId', obj._id, { path: '/' })
-                this.props.history.push("/");
+                this.props.dispatch(login())
+                this.props.history.push('/');
             }
         })
     }
 
     render() {
        return (
-           <div>
-               <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
-                    
+            <div>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
@@ -69,7 +69,7 @@ class Login extends React.Component {
                     <div>Password: <input type="password" name="password" onChange={this.updatePassword}/></div>
                 </form>
                 <button onClick={() => this.onClickButton()}>Log in</button>
-           </div>
+            </div>
        )
     }
 }

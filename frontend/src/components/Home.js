@@ -3,8 +3,6 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import LastIssuesLine from './LastIssuesLine'
-import { remove } from '../actions/actions';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Home extends React.Component {
     constructor(props) {

@@ -85,7 +85,7 @@ myRouter.route('/users/:user_id')
             res.json(user);
         });
 })
-.put(function(req,res){ 
+.put(function(req,res){
                 User.findById(req.params.user_id, function(err, user) {
                     if (err){
                         res.send(err);
