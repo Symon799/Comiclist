@@ -3,6 +3,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import cookie from 'react-cookies'
+import MyList from './MyList'
 
 class Profile extends React.Component {
     constructor(props) {
@@ -11,11 +12,13 @@ class Profile extends React.Component {
             username: "",
             email: "",
             password: "",
-            password2: ""
+            password2: "",
+            comics: []
         }
         this.updateUsername = this.updateUsername.bind(this)
         this.updateEmail = this.updateEmail.bind(this)
         this.updatePassword = this.updatePassword.bind(this)
+        this.updatePassword2 = this.updatePassword2.bind(this)
         this.onClickButton = this.onClickButton.bind(this)
     }
 
@@ -32,7 +35,6 @@ class Profile extends React.Component {
                 password: obj.password,
                 password2: obj.password
             })
-
         })
     }
 
@@ -56,23 +58,42 @@ class Profile extends React.Component {
 
     updatePassword2(password2) {
         this.setState({
-            password: password2.target.value
+            password2: password2.target.value
         })
     }
 
     onClickButton() {
         console.log('click')
-        fetch('http://localhost:4242/users/' + cookie.load('userId'), {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: this.state.username,
-                email: this.state.email,
-                password: this.state.password,
-                comics: []
+
+        if (this.state.password === this.state.password2 && this.state.password !== '') {
+            fetch('http://localhost:4242/users/' + cookie.load('userId'), {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.json())
+            .then(obj => {
+                console.log(obj)
+                this.setState({
+                    comics: obj.comics
+                })
+
+                fetch('http://localhost:4242/users/' + cookie.load('userId'), {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: this.state.username,
+                        email: this.state.email,
+                        password: this.state.password,
+                        comics: this.state.comics
+                    })
+                }).then(response => response.json())
+                .then(this.props.history.push('/'))
             })
-        }).then(response => response.json())
-        .then(obj => this.props.history.push('/login'))
+        } else {
+            this.setState({
+                password: "",
+                password2: ""
+            })
+        }
     }
 
     render() {
@@ -95,13 +116,13 @@ class Profile extends React.Component {
                     <form>
                         <div>User name: <input type="text" name="username" value={this.state.username} onChange={this.updateUsername}/></div>
                         <div>Email: <input type="text" name="email" value={this.state.email} onChange={this.updateEmail}/></div>
-                        <div>New Password: <input type="password" name="password" onChange={this.updatePassword}/></div>
-                        <div>Confirm New Password: <input type="password" name="password" onChange={this.updatePassword2}/></div>
+                        <div>New Password: <input type="password" name="password" value={this.state.password} onChange={this.updatePassword}/></div>
+                        <div>Confirm New Password: <input type="password" name="password2" value={this.state.password2} onChange={this.updatePassword2}/></div>
                     </form>
                     <button onClick={() => this.onClickButton()}>Edit Profile</button>
                 </div>
                 <div>
-                    MyList
+                    <MyList/>
                 </div>
             </div>
         )
